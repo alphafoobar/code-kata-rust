@@ -1,0 +1,7 @@
+= code-kata-rust
+
+Built in Jetbrains CLion with the Rust plugin.
+
+== How to Install Rust on MacOSX?
+
+

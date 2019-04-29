@@ -4,6 +4,6 @@ version = "0.1.0"
 
 [lib]
 name = "codekata"
-path = "src/kata02_binary_search.rs"
+path = "src/kata02/binary_search.rs"
 
 [dependencies]

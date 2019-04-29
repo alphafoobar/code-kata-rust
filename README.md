@@ -1,1 +1,0 @@
-# code-kata-rust
