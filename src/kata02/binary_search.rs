@@ -1,49 +1,20 @@
 mod kata02 {
     use std::option::Option;
 
-    fn min(x: usize, y: usize) -> usize {
-        if x < y {
-            return x;
-        }
-        return y;
-    }
-
-    fn calculate_mid(offset: usize, length: usize, remaining: usize) -> usize {
-        return min(length - 1 - offset, remaining / 2);
-    }
-
-    fn found_index(key: i32, array: &[i32], offset: usize) -> Option<usize> {
-        if array[offset] == key {
-            Some(offset)
-        } else {
-            None
-        }
-    }
-
     fn _chop(key: i32, array: &[i32], offset: usize, length: usize) -> Option<usize> {
         let remaining: usize = length - offset;
-
         if remaining == 0 {
             return None;
         }
-        if remaining == 1 {
-            if array[offset] == key {
-                return Some(offset);
-            } else {
-                return None;
-            };
-        }
 
-        let mid_point: usize = calculate_mid(offset, length, remaining);
-        let point: usize = offset + mid_point;
-
+        let point: usize = offset + remaining / 2;
         if array[point] == key {
             return Some(point);
         }
         if array[point] > key {
             return _chop(key, array, offset, point);
         }
-        return _chop(key, array, point, length);
+        return _chop(key, array, point + 1, length);
     }
 
     pub fn chop(key: i32, array: &[i32]) -> Option<usize> {
