@@ -1,44 +1,46 @@
 mod kata02 {
     use std::option::Option;
 
-    fn _chop(key: i32, array: &[i32], offset: usize, length: usize) -> Option<usize> {
-        let remaining: usize = length - offset;
-        if remaining == 0 {
-            return None;
-        }
+    pub fn chop(key: i64, array: &[i64]) -> Option<usize> {
+        let mut low: usize = 0;
+        let mut high: usize = array.len();
 
-        let point: usize = offset + remaining / 2;
-        if array[point] == key {
-            return Some(point);
-        }
-        if array[point] > key {
-            return _chop(key, array, offset, point);
-        }
-        return _chop(key, array, point + 1, length);
-    }
+        while low < high {
+            let remaining: usize = high - low;
+            let point: usize = low + remaining / 2;
+            let value: i64 = array[point];
 
-    pub fn chop(key: i32, array: &[i32]) -> Option<usize> {
-        return _chop(key, array, 0, array.len());
+            if value == key {
+                return Some(point);
+            }
+
+            if value > key {
+                high = point;
+            } else {
+                low = point + 1;
+            }
+        }
+        return None;
     }
 
     #[cfg(test)]
     mod tests {
         #[test]
         fn search_empty_array() {
-            let array: [i32; 0] = [];
+            let array: [i64; 0] = [];
             assert_eq!(None, super::chop(1, &array));
         }
 
         #[test]
         fn search_singleton() {
-            let array: [i32; 1] = [1];
+            let array: [i64; 1] = [1];
             assert_eq!(Some(0), super::chop(1, &array));
             assert_eq!(None, super::chop(3, &array));
         }
 
         #[test]
         fn search_array_of_three() {
-            let array: [i32; 3] = [1, 3, 5];
+            let array: [i64; 3] = [1, 3, 5];
             assert_eq!(Some(0), super::chop(1, &array));
             assert_eq!(Some(1), super::chop(3, &array));
             assert_eq!(Some(2), super::chop(5, &array));
@@ -50,7 +52,7 @@ mod kata02 {
 
         #[test]
         fn search_array_or_four() {
-            let array: [i32; 4] = [1, 3, 5, 7];
+            let array: [i64; 4] = [1, 3, 5, 7];
             assert_eq!(Some(0), super::chop(1, &array));
             assert_eq!(Some(1), super::chop(3, &array));
             assert_eq!(Some(2), super::chop(5, &array));
