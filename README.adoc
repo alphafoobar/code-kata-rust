@@ -1,9 +1,10 @@
 image:https://travis-ci.com/alphafoobar/code-kata-rust.svg?branch=master["Build Status", link="https://travis-ci.com/alphafoobar/code-kata-rust"]
 
-= code-kata-rust
+== code-kata-rust
 
 Built in Jetbrains CLion with the Rust plugin.
 
 == How to Install Rust on MacOSX?
 
+_Preference is to https://doc.rust-lang.org/1.0.0/book/installing-rust.html[install Rustup]_
 
